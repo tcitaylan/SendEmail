@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 13000;
 
 var message = "message";
 
@@ -20,11 +21,11 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.use((req, res, next)=>{
-    res.render('Maintenance.hbs');
-})
+// app.use((req, res, next)=>{
+//     res.render('Maintenance.hbs');
+// })
 app.use(express.static(__dirname + '/public'));
-hbs.registerHelper('getCurrentYear',()=>{
+   hbs.registerHelper('getCurrentYear',()=>{
     return new Date().getFullYear();
 });
 
@@ -50,6 +51,8 @@ app.get('/about', (req, res)=>{
 });
 
 
-app.listen(13000, ()=>{
-    console.log('Listening on 13000');
+
+
+app.listen(port, ()=>{
+    console.log(`Listening on ${port}`);
 });
